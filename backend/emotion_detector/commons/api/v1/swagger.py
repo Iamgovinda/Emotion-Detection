@@ -22,7 +22,7 @@ class SwaggerSchemaView(APIView):
         :param request: request object
         :return: schema response
         """
-        generator = SchemaGenerator(title='Emotion Detection Doc', urlconf='emotion_detector.commons.api.v1.urls',
+        generator = SchemaGenerator(title='Emotion Detection Doc', urlconf='emotion_detector.api.v1.urls',
                                     url="/api/v1/")
         schema = generator.get_schema(request=request)
         return Response(schema)
