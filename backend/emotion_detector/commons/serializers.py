@@ -51,6 +51,7 @@ class DynamicFieldsModelSerializer(ModelSerializer):
         # check if created_by and updated_by is instance of PrimaryKeyRelatedField because,
         # if someone overrides created_by and updated_by datatypes other than PrimaryKeyRelatedField
         # we shouldn't touch it
+        return fields
 
     class Meta:
         model = type("IgnoreThisClassThisIsJustForCodeChecker", (),

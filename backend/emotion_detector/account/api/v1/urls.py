@@ -9,5 +9,5 @@ r = DefaultRouter()
 r.register('check', APICheckViewSet, basename='check')
 
 urlpatterns = [
-    path('register/', UserRegistrationView, name="register-user")
-]
+                  path('register/', UserRegistrationView.as_view(), name="register-user")
+              ] + r.urls

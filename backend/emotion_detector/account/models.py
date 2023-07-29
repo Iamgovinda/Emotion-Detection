@@ -36,7 +36,7 @@ class User(TimeStampModel, AbstractUser):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'last_name']
 
-    ACCOUNT_REGISTRATION_FIELDS = ['email', 'first_name', 'last_name', 'password', 'contact_number']
+    ACCOUNT_REGISTRATION_FIELDS = ['email', 'first_name', 'last_name', 'password']
 
     objects = UserManager()
 

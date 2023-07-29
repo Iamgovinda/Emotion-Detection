@@ -4,6 +4,8 @@ from rest_framework import serializers
 from emotion_detector.commons.serializers import DynamicFieldsModelSerializer
 from django.contrib.auth.password_validation import validate_password as dj_validate_password
 
+from emotion_detector.account.models import User
+
 USER = get_user_model()
 
 
@@ -12,8 +14,8 @@ class UserAccountRegistrationSerializer(DynamicFieldsModelSerializer):
                                             style={'input_type': 'password'})
 
     class Meta:
-        model = USER
-        fields = USER.ACCOUNT_REGISTRATION_FIELDS + ['repeat_password']
+        model = User
+        fields = ['email', 'first_name', 'last_name', 'password'] + ['repeat_password']
         extra_kwargs = {
             'password': {
                 'write_only': True
