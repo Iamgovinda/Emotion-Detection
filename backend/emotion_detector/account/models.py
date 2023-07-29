@@ -3,7 +3,7 @@ from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.validators import UnicodeUsernameValidator
 from django.db import models
 import uuid
-
+import json
 # Create your models here.
 from emotion_detector.commons.models import TimeStampModel, File
 
@@ -47,3 +47,18 @@ class User(TimeStampModel, AbstractUser):
 
     def __str__(self):
         return f"{self.email}"
+
+
+class SocialUser(models.Model):
+    uid = models.CharField(primary_key=True, max_length=255)
+    provider = models.CharField(max_length=225)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    extra = models.TextField()
+
+    def save(self, force_insert=False, force_update=False, using=None,
+             update_fields=None):
+        self.extra = json.dumps(self.extra)
+        return super().save(force_insert=False,
+                            force_update=False,
+                            using=None,
+                            update_fields=None)
