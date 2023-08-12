@@ -25,5 +25,4 @@ class SwaggerSchemaView(APIView):
         generator = SchemaGenerator(title='Emotion Detection Doc', urlconf='emotion_detector.api.v1.urls',
                                     url="/api/v1/")
         schema = generator.get_schema(request=request)
-        print(schema)
         return Response(schema)

@@ -4,7 +4,7 @@ from django.utils import timezone
 from django.contrib.auth import get_user_model
 from django.conf import settings
 
-from emotion_detector.account.models import SocialUser
+from .models import SocialUser
 
 USER = get_user_model()
 
