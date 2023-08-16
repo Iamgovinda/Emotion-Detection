@@ -1,6 +1,6 @@
 from channels.generic.websocket import AsyncWebsocketConsumer
 
-from emotion_detector.detector.main2 import emotion_detector
+from emotion_detector.detector.main import emotion_detector
 
 
 class VideoConsumer(AsyncWebsocketConsumer):
