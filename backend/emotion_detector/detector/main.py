@@ -5,7 +5,8 @@ from tensorflow.keras.preprocessing.image import img_to_array
 def emotion_detector(base64Image):
     face_classifier = cv2.CascadeClassifier(r'/home/insight/Desktop/College '
                                             r'Project/Emotion_Detection_CNN/haarcascade_frontalface_default.xml')
-    classifier = load_model(r'/home/insight/PycharmProjects/Learnings/College Project/backend/image_detection/emotion_detection_model_100epochs.h5')
+    classifier = load_model(
+        r'/home/insight/PycharmProjects/Learnings/College Project/backend/image_detection/emotion_detection_model_100epochs.h5')
 
     emotion_labels = ['Angry', 'Disgust', 'Fear', 'Happy', 'Neutral', 'Sad', 'Surprise']
 

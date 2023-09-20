@@ -18,4 +18,4 @@ class ImageDetectionPOSTViewset(CreateModelMixin, GenericViewSet):
 
     def create(self, request, *args, **kwargs):
         label = emotion_detector(request.data.get('imageData'))
-        return Response({'data': label})
+        return Response({'data': label if label is not None else 'neutral'})
