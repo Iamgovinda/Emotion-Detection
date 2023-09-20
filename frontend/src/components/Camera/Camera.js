@@ -8,8 +8,10 @@ import Gallery from "../Gallery/Gallery";
 import Results from "../Results/Results";
 import Webcam from "react-webcam";
 
+
 import "./Camera.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import axios from "axios";
 
 const Camera = ({ photoMode, socket }) => {
   const camera = useRef();
@@ -121,7 +123,7 @@ const Camera = ({ photoMode, socket }) => {
     });
     setPhotos(newPhotos);
   };
-
+  console.log(photoMode, " photo mode");
   return (
     <div className="camera">
       <p className="scroll_down">Scroll down for results ↓</p>
