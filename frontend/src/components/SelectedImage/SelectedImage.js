@@ -11,12 +11,12 @@ const SelectedImage = ({img}) => {
   const [label, setLabel] = useState('neutral');
 
   const [processing, setProcessing] = useState(true);
-  const [results, setResults] = useState([]);
+  // const [results, setResults] = useState([]);
 
   const getFaces = async () => {
     setProcessing(true);
     const faces = await detectFaces(selected.current);
-    setResults(faces);
+    // setResults(faces);
     drawResults(selected.current, canvas.current, faces, "box");
     drawResults(selected.current, canvas.current, faces, "landmarks");
     // Get the image data from the canvas as a base64-encoded string
@@ -28,6 +28,7 @@ const SelectedImage = ({img}) => {
 
   useEffect(() => {
     getFaces();
+    //eslint-disable-next-line
   }, [img]);
 
   return (

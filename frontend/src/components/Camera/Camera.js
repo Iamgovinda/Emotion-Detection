@@ -11,7 +11,6 @@ import Webcam from "react-webcam";
 
 import "./Camera.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import axios from "axios";
 
 const Camera = ({ photoMode, socket }) => {
   const camera = useRef();
@@ -20,10 +19,10 @@ const Camera = ({ photoMode, socket }) => {
   const [photo, setPhoto] = useState(undefined);
   const [showGallery, setShowGallery] = useState(false);
   const [photos, setPhotos] = useState([]);
-  const [results, setResults] = useState([]);
+  // const [results, setResults] = useState([]);
   const [label, setLabel] = useState("neutral");
   const [processing, setProcessing] = useState(false);
-  const [count, setCount] = useState(0);
+  // const [count, setCount] = useState(0);
   const getFaces = async () => {
     if (camera.current !== null && socket.readyState === WebSocket.OPEN) {
       const canvas = document.createElement("canvas");
@@ -49,11 +48,11 @@ const Camera = ({ photoMode, socket }) => {
         faces,
         "boxLandmarks"
       );
-      setResults(faces);
+      // setResults(faces);
       await new Promise((resolve) => {
         socket.onmessage = async (event) => {
           setLabel(event.data.toLowerCase());
-          setCount((count) => count + 1);
+          // setCount((count) => count + 1);
           if (event.data != null) {
             // await getFaces();
           }
@@ -80,6 +79,7 @@ const Camera = ({ photoMode, socket }) => {
         }
       });
     }
+    //eslint-disable-next-line
   }, [socket]);
 
   const clearOverlay = (canvas) => {

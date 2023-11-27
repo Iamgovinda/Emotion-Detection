@@ -1,0 +1,11 @@
+input {
+  min-width: 10rem;
+}
+.label-div {
+  display: flex;
+  justify-content: flex-start;
+}
+label {
+  font-weight: 700;
+  font-size: 1rem;
+}
