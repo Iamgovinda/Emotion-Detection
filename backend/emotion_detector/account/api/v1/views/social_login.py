@@ -22,11 +22,11 @@ class SocialLoginView(GenericAPIView):
     @staticmethod
     def get_user_response(user):
         if user.is_active:
-            token, _ = AuthToken.objects.get_or_create(user=user)
+            token, _ = AuthToken.objects.create(user=user)
             user.last_login = timezone.now()
             user.save()
             return Response(
-                {'token': token.key, 'id': user.id, 'first_name': user.first_name,
+                {'token': token.token_key, 'id': user.id, 'first_name': user.first_name,
                  'last_name': user.last_name, 'name': user.display_name, 'email': user.email,
                  })
         else:

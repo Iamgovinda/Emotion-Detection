@@ -1,10 +1,8 @@
 import requests
-from datetime import timedelta
-from django.utils import timezone
 from django.contrib.auth import get_user_model
-from django.conf import settings
 
 from .models import SocialUser
+from ..commons.models import File
 
 USER = get_user_model()
 
@@ -17,17 +15,36 @@ class SocialBaseBackend:
     def auth(self, token):
         pass
 
-    def get_user(self, uid, email):
+    def get_user(self, uid, email, data=None):
         created = False
         social_account = SocialUser.objects.filter(provider=self.PROVIDER, uid=uid).first()
         if not social_account:
-            user_instance = USER.objects.get_or_create(email=email)[0]  # get_or_create is required here
+            user_instance, has_created = USER.objects.get_or_create(email=email)  # get_or_create is required here
+            if has_created:
+                # code to download and save profile picture
+                if data.get('picture'):
+                    try:
+                        res = requests.get(data.get('picture'))
+                        if res.status_code in [200, 201]:
+                            file_content = res.content
+                            file_instance = File.objects.create(file=file_content,
+                                                                name=f"{data.get('given_name')}'s Profile picture",
+                                                                file_type="img")
+                            user_instance.profile_picture = file_instance
+                            user_instance.save()
+                    except Exception as e:
+                        pass
+            if data:
+                user_instance.first_name = data.get('given_name')
+                user_instance.last_name = data.get('family_name')
+            user_instance.is_active = True
+            user_instance.save()
             social_account = SocialUser.objects.create(provider=self.PROVIDER, uid=uid, user=user_instance)
             created = True
         return social_account.user, created
 
-    def get_user_instance(self, uid, email):
-        return self.get_user(uid, email)[0]
+    def get_user_instance(self, uid, email, data=None):
+        return self.get_user(uid, email, data=data)[0]
 
 
 class GoogleAuthBackend(SocialBaseBackend):
@@ -46,7 +63,7 @@ class GoogleAuthBackend(SocialBaseBackend):
         if success:
             uid = data['sub']
             email = data['email']
-            return self.get_user_instance(uid, email)
+            return self.get_user_instance(uid, email, data=data)
         self.auth_errors = data
         return None
 
