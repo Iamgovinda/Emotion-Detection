@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 import os
 from datetime import timedelta
 from pathlib import Path
-from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY = "config('SECRET_KEY')"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -87,13 +86,17 @@ ASGI_APPLICATION = 'backend.asgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config('DB_NAME'),         # Replace with the name of the database
-        'USER': config('DB_USERNAME'),      # Replace with the PostgreSQL user you created
-        'PASSWORD': config('DB_PASSWORD'),  # Replace with the user's password
-        'HOST': 'localhost',         # Replace with the database host (usually 'localhost' for local development)
-        'PORT': 5432,                  # Leave it empty to use the default port (usually 5432)
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': config('DB_NAME'),         # Replace with the name of the database
+    #     'USER': config('DB_USERNAME'),      # Replace with the PostgreSQL user you created
+    #     'PASSWORD': config('DB_PASSWORD'),  # Replace with the user's password
+    #     'HOST': 'localhost',         # Replace with the database host (usually 'localhost' for local development)
+    #     'PORT': 5432,                  # Leave it empty to use the default port (usually 5432)
+    # }
+        'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / "db.sqlite3",
     }
 }
 

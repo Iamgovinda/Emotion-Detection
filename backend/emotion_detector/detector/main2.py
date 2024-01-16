@@ -5,10 +5,12 @@ from tensorflow.keras.preprocessing.image import img_to_array
 
 
 def emotion_detector():
-    face_classifier = cv2.CascadeClassifier(r'/home/insight/Desktop/College '
-                                            r'Project/Emotion_Detection_CNN/haarcascade_frontalface_default.xml')
+    # face_classifier = cv2.CascadeClassifier(r'C:\Users\default.LAPTOP-6IMDNNN0\Documents\CodePlayground\emotion_detection\Emotion-Detection\backend\emotion_detector\detector\haarcascade_frontalface_default.xml')
+    # classifier = load_model(
+        #     r'C://Users//default.LAPTOP-6IMDNNN0//Documents//CodePlayground//emotion_detection\Emotion-Detection\backend\emotion_detector\detector\model_filter.h5')
+    face_classifier = cv2.CascadeClassifier(r'C:/Users/default.LAPTOP-6IMDNNN0/Documents/CodePlayground/emotion_detection/Emotion-Detection/backend/emotion_detector/detector/haarcascade_frontalface_default.xml')
     classifier = load_model(
-        r'/home/insight/PycharmProjects/Learnings/College Project/backend/image_detection/emotion_detection_model_100epochs.h5')
+        r'C:/Users/default.LAPTOP-6IMDNNN0/Documents/CodePlayground/emotion_detection/Emotion-Detection/backend/emotion_detector/detector/model_filter.h5')
 
     emotion_labels = ['Angry', 'Disgust', 'Fear', 'Happy', 'Neutral', 'Sad', 'Surprise']
 
@@ -42,3 +44,4 @@ def emotion_detector():
 
     cap.release()
     cv2.destroyAllWindows()
+emotion_detector()
