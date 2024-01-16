@@ -8,3 +8,5 @@
 *~
 *.swp
 /frontend/node_modules
+/backend/emotion_detector/detector/dataset
+env

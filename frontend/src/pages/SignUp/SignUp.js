@@ -23,8 +23,15 @@ const SignUp = () => {
   };
   return (
     <div className="signup-main">
-      <div className="custom-signup-form">
-        <form onSubmit={handleSubmit(onSubmit)}>
+<div className="container">
+	<div id="login-box">
+		<div className="logo">
+			<img src="http://placehold.it/100x75?text=ED" class="img img-responsive img-circle center-block"/>
+			<h1 className="logo-caption"><span class="tweak">S</span>ignUp</h1>
+		</div>
+		<div className="controls">
+
+      <form onSubmit={handleSubmit(onSubmit)}className="flex">
           <Input
             label="Email"
             name="email"
@@ -75,14 +82,24 @@ const SignUp = () => {
             error={errors?.name} // Pass the error for this input
             classNames={"input_basic password"}
           />
-
-          <button className="button">SignUp</button>
+          <br/>
+          <button style={{width:'100%', height:'2rem'}}>SignUp</button>
+          <hr/>
+          OR
+          <hr/>
+          <GoogleLogin />
         </form>
-      </div>
-      <br />
-      <GoogleLogin />
+		</div>
+    <div class="particles">
+    <div class="particle" style={{ top: '20vh', left: '30vw', width: '10px', height: '10px' }} ></div>
+    <div class="particle" style={{ top: '50vh', left: '70vw', width: '8px', height: '8px' }}></div>
+  </div>
+	</div>
+    </div>
     </div>
   );
 };
 
 export default SignUp;
+
+
