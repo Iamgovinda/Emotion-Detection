@@ -5,7 +5,7 @@ import Input from "../../components/Input/Input";
 import GoogleLogin from "../../components/GoogleLogin/GoogleLogin";
 import { UserService } from "../../services/UserService";
 import { useNavigate } from "react-router-dom";
-
+import toast from 'react-hot-toast';
 const SignUp = () => {
   const { handleSubmit, control, errors } = useForm();
   const navigate = useNavigate();
@@ -13,12 +13,21 @@ const SignUp = () => {
     // Handle form submission logic here
     UserService.register("/account/register/", data)
       .then((response) => {
-        // toast.success("Successfully Logged In");
+        toast.success("Successfully Registered ");
         navigate("/login");
-      })
-      .catch((error) => {
-        // toast.error("Unable to Logged In");
 
+      })
+      .catch((errors) => {
+        console.log(errors?.data);
+        for (const key in errors?.data) {
+          console.log("key: ", key)
+          if (errors?.data?.hasOwnProperty(key)) {
+              // Access the property values using the key
+              const value = errors?.data[key];
+              toast.error(value)
+              // console.log(`${key}: ${value}`);
+          }
+      }
       });
   };
   return (

@@ -5,6 +5,7 @@ import { gapi } from "gapi-script";
 import { setToken } from "../../utils/token";
 import config from "../../config";
 import { post } from "../../API/axios";
+import toast from 'react-hot-toast';
 
 
 const GoogleSparkLogin = () => {
@@ -34,6 +35,7 @@ const GoogleSparkLogin = () => {
           value: JSON.stringify(res.data.token),
         });
         navigate('/homepage')
+        toast.success("Successfully logged in")
         
       });
     }

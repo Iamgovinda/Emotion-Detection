@@ -9,6 +9,7 @@ import { setToken } from "../../utils/token";
 import config from "../../config";
 import { Link, useNavigate } from "react-router-dom";
 import "./style.css";
+import toast from 'react-hot-toast';
 
 const Login = () => {
   const { handleSubmit, control, errors } = useForm();
@@ -22,9 +23,19 @@ const Login = () => {
           value: JSON.stringify(response.data.token),
         });
         navigate('/homepage');
+        toast.success("Successfully logged in")
       })
-      .catch((error) => {
+      .catch((errors) => {
         // Handle error
+        for (const key in errors?.data) {
+          console.log("key: ", key)
+          if (errors?.data?.hasOwnProperty(key)) {
+              // Access the property values using the key
+              const value = errors?.data[key];
+              toast.error(value)
+              // console.log(`${key}: ${value}`);
+          }
+      }
       });
   };
 
@@ -59,10 +70,10 @@ const Login = () => {
             classNames={`input_basic password`}
           />
           <br/>
-          <button style={{width:'100%', height:'2rem'}}>Login</button>
+          <button style={{width:'100%', height:'2rem', backgroundColor:'green', cursor:'pointer'}}>Login</button>
           <hr/>
           If You Dont have Account {
-            <><Link to={"/signup"}>SignUp</Link></>
+            <><Link to={"/signup"} style={{textDecoration:'none'}}>SignUp</Link></>
           }
           <hr/>
           OR

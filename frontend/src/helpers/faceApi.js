@@ -41,14 +41,14 @@ export const drawResults = async (image, canvas, results, type) => {
     const resizedDetections = faceapi.resizeResults(results, displaySize);
 
     switch (type) {
-      case 'landmarks':
-        faceapi.draw.drawFaceLandmarks(canvas, resizedDetections);
-        break;
+      // case 'landmarks':
+        // faceapi.draw.drawFaceLandmarks(canvas, resizedDetections);
+        // break;
       case 'expressions':
         faceapi.draw.drawFaceExpressions(canvas, resizedDetections);
         break;
       case 'box':
-        faceapi.draw.drawDetections(canvas, resizedDetections);
+        // faceapi.draw.drawDetections(canvas, resizedDetections);
         break;
       case 'boxLandmarks':
         faceapi.draw.drawDetections(canvas, resizedDetections);
