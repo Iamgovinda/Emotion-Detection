@@ -27,5 +27,5 @@ class UserRegistrationView(CreateAPIView):
             return Response({"detail": "User Account has been created. "}, status=status.HTTP_201_CREATED,
                             headers=headers)
         return Response({
-            'detail': 'User with this email already exists.'
-        })
+            'detail': 'User with this email already exists.',
+        }, status=400)

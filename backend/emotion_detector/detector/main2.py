@@ -10,9 +10,9 @@ def emotion_detector():
         #     r'C://Users//default.LAPTOP-6IMDNNN0//Documents//CodePlayground//emotion_detection\Emotion-Detection\backend\emotion_detector\detector\model_filter.h5')
     face_classifier = cv2.CascadeClassifier(r'C:/Users/default.LAPTOP-6IMDNNN0/Documents/CodePlayground/emotion_detection/Emotion-Detection/backend/emotion_detector/detector/haarcascade_frontalface_default.xml')
     classifier = load_model(
-        r'C:/Users/default.LAPTOP-6IMDNNN0/Documents/CodePlayground/emotion_detection/Emotion-Detection/backend/emotion_detector/detector/model_filter.h5')
+        r'C:/Users/default.LAPTOP-6IMDNNN0/Documents/CodePlayground/emotion_detection/Emotion-Detection/backend/emotion_detector/detector/emotion_model.hdf5')
 
-    emotion_labels = ['Angry', 'Disgust', 'Fear', 'Happy', 'Neutral', 'Sad', 'Surprise']
+    emotion_labels = ['Angry', 'Fear', 'Happy', 'Neutral', 'Sad', 'Surprise']
 
     cap = cv2.VideoCapture(0)
     while True:
